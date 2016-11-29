@@ -1,0 +1,48 @@
+
+/* Class = "NSMenuItem"; title = "NowPlaying"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "NowPlaying";
+
+/* Class = "NSButtonCell"; title = "Logout"; ObjectID = "1l2-UE-Xhr"; */
+"1l2-UE-Xhr.title" = "ログアウト";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Consumer Secret"; ObjectID = "4jq-0j-vOT"; */
+"4jq-0j-vOT.placeholderString" = "Consumer Secret";
+
+/* Class = "NSMenuItem"; title = "Quit NowPlaying"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "NowPlayingを終了";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Consumer Key"; ObjectID = "9dT-uY-tgw"; */
+"9dT-uY-tgw.placeholderString" = "Consumer Key";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* Class = "NSTextFieldCell"; title = "Your application token"; ObjectID = "FXJ-aW-KHX"; */
+"FXJ-aW-KHX.title" = "新規アプリケーションのキー";
+
+/* Class = "NSWindow"; title = "Login"; ObjectID = "KQj-pz-win"; */
+"KQj-pz-win.title" = "ログイン";
+
+/* Class = "NSTextFieldCell"; title = ""; ObjectID = "NKn-Dm-LyG"; */
+"NKn-Dm-LyG.title" = "";
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "cCb-Xz-aaQ"; */
+"cCb-Xz-aaQ.title" = "環境設定";
+
+/* Class = "NSButtonCell"; title = "Send Tweet"; ObjectID = "crN-XX-4vY"; */
+"crN-XX-4vY.title" = "ツイート送信";
+
+/* Class = "NSButtonCell"; title = "Twitter Login"; ObjectID = "dBe-S5-UWW"; */
+"dBe-S5-UWW.title" = "Twitterへログイン";
+
+/* Class = "NSTextFieldCell"; title = "Artist"; ObjectID = "gfk-qd-DbM"; */
+"gfk-qd-DbM.title" = "アーティスト";
+
+/* Class = "NSTextFieldCell"; title = "Title"; ObjectID = "kHM-JW-6nX"; */
+"kHM-JW-6nX.title" = "曲名";
+
+/* Class = "NSButtonCell"; title = "Change"; ObjectID = "rwj-O4-cIW"; */
+"rwj-O4-cIW.title" = "変更";
+
+/* Class = "NSMenu"; title = "NowPlaying"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "NowPlaying";

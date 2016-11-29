@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  NowPlaying
+
+  Created by Muhotchi on 1/16/16.
+  Copyright © 2016 Muhotchi. All rights reserved.
+*/
+"status.itunesnotrunning" = "iTunes is not running.";
+"status.itunesnotplaying" = "iTunes is not playing.";
+"status.ituneserror" = "On error occured on getting current track.";
+"status.tweetlength" = "Total Length: %lu";
+"status.tweetsuccess" = "Tweet is sent successfully!";
+"status.tweeterror" = "On error occured on uploading tweet.";
+
+"status.prefbothfield" = "Please enter or clear in both text fields.";
+"status.prefconfirm" = "Are you sure change Twitter application token?";
+"status.ok" = "OK";
+"status.cancel" = "Cancel";
+
+"status.twitterloginerror" = "On error occured on requesting on authorize twitter. Please try again at moments.";

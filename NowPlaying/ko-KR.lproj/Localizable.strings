@@ -1,0 +1,20 @@
+/*
+ Localizable.strings
+ NowPlaying
+ 
+ Created by Muhotchi on 1/16/16.
+ Copyright © 2016 Muhotchi. All rights reserved.
+ */
+"status.itunesnotrunning" = "iTunes가 실행중이 아닙니다.";
+"status.itunesnotplaying" = "iTunes에서 곡을 플레이 하고 있지 않습니다.";
+"status.ituneserror" = "곡 정보를 가져오는 중 문제가 발생했습니다.";
+"status.tweetlength" = "트윗 문자 수: %lu";
+"status.tweetsuccess" = "트윗 성공!";
+"status.tweeterror" = "트윗 전송 중 문제가 발생하였습니다.";
+
+"status.prefbothfield" = "새 어플 등록을 위해 키, 비밀키를 모두 입력해주세요.";
+"status.prefconfirm" = "트위터 어플 정보를 변경하시겠습니까?";
+"status.ok" = "확인";
+"status.cancel" = "취소";
+
+"status.twitterloginerror" = "트위터 로그인 중 문제가 발생하였습니다. 잠시 후 다시 시도해주세요.";
