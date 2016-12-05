@@ -8,7 +8,6 @@
 #import "LoginController.h"
 #import "G.h"
 #import "MhSecurity.h"
-#import "MhTwitter.h"
 #import "AppDelegate.h"
 
 
@@ -33,27 +32,30 @@
     self.indicator.hidden = NO;
     [self.indicator startAnimation:nil];
     
-    [[MhTwitter instance] sendTokenRequestWithHandler:^(NSDictionary* result, NSError* error) {
-        if(error) {
-            NSAlert* alert = [[NSAlert alloc] init];
-            alert.alertStyle = NSCriticalAlertStyle;
-            alert.messageText = NSLocalizedString(@"status.twitterloginerror", @"");
-            [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
-                [self.view.window close];
-            }];
-            return;
-        }
-        
-        self.oauthToken = [result valueForKey:@"oauth_token"];
-        self.oauthSecret = [result valueForKey:@"oauth_token_secret"];
-        
-        self.webview.hidden = NO;
-        
-        NSString* url = [@"https://api.twitter.com/oauth/authorize?oauth_token=" stringByAppendingString:[result valueForKey:@"oauth_token"]];
-        [self.webview.mainFrame loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-        
-        [self.indicator stopAnimation:nil];
-        self.indicator.hidden = YES;
+    [STWOAuth requestRequestTokenWithSession:[AppDelegate appDelegate].twitterSession xAuthMode:STWXAuthModeNone callback:@"oob" handler:^(NSString * _Nullable token, NSString * _Nullable tokenSecret, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(error) {
+                NSAlert* alert = [[NSAlert alloc] init];
+                alert.alertStyle = NSCriticalAlertStyle;
+                alert.messageText = NSLocalizedString(@"status.twitterloginerror", @"");
+                [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+                    [self.view.window close];
+                }];
+                return;
+            }
+            
+            self.oauthToken = token;
+            self.oauthSecret = tokenSecret;
+            
+            self.webview.hidden = NO;
+            
+            NSString* url = [@"https://api.twitter.com/oauth/authorize?oauth_token=" stringByAppendingString:token];
+            
+            [self.webview.mainFrame loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+            
+            [self.indicator stopAnimation:nil];
+            self.indicator.hidden = YES;
+        });
     }];
     
 }
@@ -72,31 +74,31 @@
     self.indicator.hidden = NO;
     [self.indicator startAnimation:nil];
     
-    [[MhTwitter instance] sendAuthorize:key token:self.oauthToken secret:self.oauthSecret withHandler:^(NSDictionary* result, NSError* error) {
-        
-        if(error) {
-            NSAlert* alert = [[NSAlert alloc] init];
-            alert.alertStyle = NSCriticalAlertStyle;
-            alert.messageText = NSLocalizedString(@"status.twitterloginerror", @"");
-            [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
-                [self.view.window close];
-            }];
-            return;
-        }
-        
-        NSString* token = [result valueForKey:@"oauth_token"];
-        NSString* secret = [result valueForKey:@"oauth_token_secret"];
-        
-        [[MhTwitter instance] setAccessToken:token secret:secret];
-        
-        [MhSecurity SaveToUserDefaults:token key:KEY_TOKEN];
-        [MhSecurity SaveToUserDefaults:secret key:KEY_SECRET];
-        [MhSecurity SaveToUserDefaults:[result valueForKey:@"user_id"] key:KEY_USERID];
-        
-        [self.view.window close];
-        
-        [[AppDelegate appDelegate] refreshTwitterAccount];
+    [STWOAuth requestAccessTokenWithSession:[AppDelegate appDelegate].twitterSession requestToken:self.oauthToken requestTokenSecret:self.oauthSecret xAuthMode:STWXAuthModeNone xAuthUsername:nil xAuthPassword:nil oauthVerifier:key handler:^(NSString * _Nullable token, NSString * _Nullable tokenSecret, int64_t userID, NSString * _Nullable screenName, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(error) {
+                NSAlert* alert = [[NSAlert alloc] init];
+                alert.alertStyle = NSCriticalAlertStyle;
+                alert.messageText = NSLocalizedString(@"status.twitterloginerror", @"");
+                [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+                    [self.view.window close];
+                }];
+                return;
+            }
+            
+            
+            [AppDelegate appDelegate].twitterSession.account = [[STWAccount alloc] initWithOauthToken:token oauthTokenSecret:tokenSecret];
+            
+            [MhSecurity SaveToUserDefaults:token key:KEY_TOKEN];
+            [MhSecurity SaveToUserDefaults:tokenSecret key:KEY_SECRET];
+            [MhSecurity SaveToUserDefaults:[NSString stringWithFormat:@"%lli", userID] key:KEY_USERID];
+            
+            [self.view.window close];
+            
+            [[AppDelegate appDelegate] refreshTwitterAccount];
+        });
     }];
+    
 }
 
 

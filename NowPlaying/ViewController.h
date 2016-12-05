@@ -6,6 +6,7 @@
 //  Copyright © 2016 Muhotchi. All rights reserved.
 //
 #import <Cocoa/Cocoa.h>
+@import STwitter;
 
 
 @interface ViewController : NSViewController

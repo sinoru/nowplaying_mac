@@ -11,6 +11,7 @@
 #import "iTunes.h"
 #import "MhTwitter.h"
 #import "NSImage+Resize.h"
+#import "AppDelegate.h"
 
 
 @interface ViewController ()
@@ -53,23 +54,26 @@
     self.imgTwitterIcon.image = nil;
     self.txtTwitterName.stringValue = @"";
     
-    NSString* userid = [MhSecurity StringFromUserDefaults:KEY_USERID];
-    if([MhSecurity StringFromUserDefaults:KEY_TOKEN] && [MhSecurity StringFromUserDefaults:KEY_SECRET] && userid) {
-        [[MhTwitter instance] sendUserInfo:userid withHandler:^(NSDictionary* result, NSError* error) {
-            if(error || [result valueForKey:@"error"]) {
-                // error
-                [self twitterLogout:nil];
-                return;
-            }
-            self.btnTwitterLogout.hidden = NO;
-            self.imgTwitterIcon.hidden = NO;
-            self.txtTwitterName.hidden = NO;
-            
-            self.imgTwitterIcon.image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[result valueForKey:@"profile_image_url"]]];
-            self.txtTwitterName.stringValue = [NSString stringWithFormat:@"%@ (@%@)", [result valueForKey:@"name"], [result valueForKey:@"screen_name"]];
-            
-            self.btnTweet.enabled = ![self.txtTitle.stringValue isEqualToString:@""]; // same enabled state on textfield
+    if ([AppDelegate appDelegate].twitterSession.account != nil) {
+        STWUserSessionTask *task = [[AppDelegate appDelegate].twitterSession fetchUserTaskForCurrentAccountAndReturnError:nil completionHandler:^(STWUser * _Nullable user, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(error) {
+                    // error
+                    [self twitterLogout:nil];
+                    return;
+                }
+                
+                self.btnTwitterLogout.hidden = NO;
+                self.imgTwitterIcon.hidden = NO;
+                self.txtTwitterName.hidden = NO;
+                
+                self.imgTwitterIcon.image = [[NSImage alloc] initWithContentsOfURL:user.profileImageURL];
+                self.txtTwitterName.stringValue = [NSString stringWithFormat:@"%@ (@%@)", user.name, user.screenName];
+                
+                self.btnTweet.enabled = ![self.txtTitle.stringValue isEqualToString:@""]; // same enabled state on textfield
+            });
         }];
+        [task resume];
     }
     else {
         self.btnTwitterLogin.hidden = NO;
@@ -178,14 +182,19 @@
     self.btnTweet.enabled = NO;
     
     if(self.imgArtwork.image == nil) {
-        [[MhTwitter instance] sendUpdate:@{@"status": self.tweetMsg} withHandler:^(NSDictionary* resultDictonary, NSError* error) {
-            self.btnTweet.enabled = YES;
-            if(resultDictonary) {
+        STWStatusSessionTask *task = [[AppDelegate appDelegate].twitterSession statusUpdateTaskWithStatus:self.tweetMsg possiblySensitive:false mediae:nil error:nil completionHandler:^(STWStatus * _Nullable status, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.btnTweet.enabled = YES;
+                
+                if (error != nil) {
+                    self.txtResult.stringValue = NSLocalizedString(@"status.tweeterror", nil);
+                    return;
+                }
+                
                 self.txtResult.stringValue = NSLocalizedString(@"status.tweetsuccess",nil);
-            } else {
-                self.txtResult.stringValue = NSLocalizedString(@"status.tweeterror", nil);
-            }
+            });
         }];
+        [task resume];
     }
     else {
         // change to jpeg
@@ -194,25 +203,29 @@
         NSDictionary* imageProps = [NSDictionary dictionaryWithObject:compressionFactor forKey:NSImageCompressionFactor];
         NSData* bitmapData = [NSBitmapImageRep representationOfImageRepsInArray:representations usingType:NSJPEGFileType properties:imageProps];
         
-        [[MhTwitter instance] sendBaseEncodedMedia:bitmapData withHandler:^(NSDictionary *resultDictonary, NSError *error) {
-            if(resultDictonary) {
-                //NSLog(@"Success with media ID : %@", [resultDictonary valueForKey:@"media_id_string"]);
-                [[MhTwitter instance] sendUpdate:@{@"status": self.tweetMsg, @"media_ids": [resultDictonary valueForKey:@"media_id_string"]} withHandler:^(NSDictionary* resultDictonary, NSError* error) {
-                    self.btnTweet.enabled = YES;
-                    if(resultDictonary) {
-                        self.txtResult.stringValue = NSLocalizedString(@"status.tweetsuccess", nil);
-                    } else {
-                        self.txtResult.stringValue = NSLocalizedString(@"status.tweeterror", nil);
-                    }
-                }];
+        STWMediaSessionTask *task = [[AppDelegate appDelegate].twitterSession uploadPhotoMediaTaskWithPhotoData:bitmapData error:nil completionHandler:^(STWMedia * _Nullable media, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error != nil) {
+                    self.txtResult.stringValue = NSLocalizedString(@"status.tweeterror", nil);
+                    return;
+                }
                 
-            }
-            else {
-                //NSLog(@"Failure : %@", [error description]);
-                self.txtResult.stringValue = NSLocalizedString(@"status.tweeterror", nil);
-                self.btnTweet.enabled = YES;
-            }
+                STWStatusSessionTask *task = [[AppDelegate appDelegate].twitterSession statusUpdateTaskWithStatus:self.tweetMsg possiblySensitive:false mediae:@[media] error:nil completionHandler:^(STWStatus * _Nullable status, NSError * _Nullable error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.btnTweet.enabled = YES;
+                        
+                        if (error != nil) {
+                            self.txtResult.stringValue = NSLocalizedString(@"status.tweeterror", nil);
+                            return;
+                        }
+                        
+                        self.txtResult.stringValue = NSLocalizedString(@"status.tweetsuccess",nil);
+                    });
+                }];
+                [task resume];
+            });
         }];
+        [task resume];
     }
 }
 

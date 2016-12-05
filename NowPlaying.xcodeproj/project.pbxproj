@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		197DAD5F1DF59E1C0014A430 /* Cryptor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 197DAD5B1DF59E1C0014A430 /* Cryptor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		197DAD621DF59E1C0014A430 /* STwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197DAD5D1DF59E1C0014A430 /* STwitter.framework */; };
+		197DAD631DF59E1C0014A430 /* STwitter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 197DAD5D1DF59E1C0014A430 /* STwitter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B66CACE1C48042000905310 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B66CACD1C48042000905310 /* AppDelegate.m */; };
 		4B66CAD11C48042000905310 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B66CAD01C48042000905310 /* main.m */; };
 		4B66CAD41C48042000905310 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B66CAD31C48042000905310 /* ViewController.m */; };
@@ -22,7 +25,54 @@
 		4BF3C94C1C4A40A000DB4573 /* NSImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3C94B1C4A40A000DB4573 /* NSImage+Resize.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		197DAD5A1DF59E1C0014A430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1916D88C1DF320F40094C180 /* NowPlaying-PM.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = OBJ_39;
+			remoteInfo = Cryptor;
+		};
+		197DAD5C1DF59E1C0014A430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1916D88C1DF320F40094C180 /* NowPlaying-PM.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = OBJ_40;
+			remoteInfo = STwitter;
+		};
+		197DAD601DF59E1C0014A430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1916D88C1DF320F40094C180 /* NowPlaying-PM.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_41;
+			remoteInfo = Cryptor;
+		};
+		197DAD641DF59E1C0014A430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1916D88C1DF320F40094C180 /* NowPlaying-PM.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_58;
+			remoteInfo = STwitter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1916D89E1DF321050094C180 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				197DAD631DF59E1C0014A430 /* STwitter.framework in Embed Frameworks */,
+				197DAD5F1DF59E1C0014A430 /* Cryptor.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1916D88C1DF320F40094C180 /* NowPlaying-PM.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "NowPlaying-PM.xcodeproj"; sourceTree = "<group>"; };
 		4B66CAC91C48042000905310 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B66CACC1C48042000905310 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4B66CACD1C48042000905310 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				197DAD621DF59E1C0014A430 /* STwitter.framework in Frameworks */,
 				4BF3C9151C4A0B3C00DB4573 /* Security.framework in Frameworks */,
 				4B8D04A41C49767D00075864 /* WebKit.framework in Frameworks */,
 			);
@@ -70,9 +121,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		197DAD471DF581970014A430 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				197DAD5B1DF59E1C0014A430 /* Cryptor.framework */,
+				197DAD5D1DF59E1C0014A430 /* STwitter.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4B66CAC01C48042000905310 = {
 			isa = PBXGroup;
 			children = (
+				1916D88C1DF320F40094C180 /* NowPlaying-PM.xcodeproj */,
 				4B66CACB1C48042000905310 /* NowPlaying */,
 				4B66CACA1C48042000905310 /* Products */,
 			);
@@ -142,10 +203,13 @@
 				4B66CAC51C48042000905310 /* Sources */,
 				4B66CAC61C48042000905310 /* Frameworks */,
 				4B66CAC71C48042000905310 /* Resources */,
+				1916D89E1DF321050094C180 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				197DAD611DF59E1C0014A430 /* PBXTargetDependency */,
+				197DAD651DF59E1C0014A430 /* PBXTargetDependency */,
 			);
 			name = NowPlaying;
 			productName = NowPlaying;
@@ -181,12 +245,35 @@
 			mainGroup = 4B66CAC01C48042000905310;
 			productRefGroup = 4B66CACA1C48042000905310 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 197DAD471DF581970014A430 /* Products */;
+					ProjectRef = 1916D88C1DF320F40094C180 /* NowPlaying-PM.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4B66CAC81C48042000905310 /* NowPlaying */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		197DAD5B1DF59E1C0014A430 /* Cryptor.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cryptor.framework;
+			remoteRef = 197DAD5A1DF59E1C0014A430 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		197DAD5D1DF59E1C0014A430 /* STwitter.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = STwitter.framework;
+			remoteRef = 197DAD5C1DF59E1C0014A430 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4B66CAC71C48042000905310 /* Resources */ = {
@@ -218,6 +305,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		197DAD611DF59E1C0014A430 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cryptor;
+			targetProxy = 197DAD601DF59E1C0014A430 /* PBXContainerItemProxy */;
+		};
+		197DAD651DF59E1C0014A430 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = STwitter;
+			targetProxy = 197DAD641DF59E1C0014A430 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4B66CAD71C48042000905310 /* Main.storyboard */ = {
@@ -331,6 +431,7 @@
 		4B66CADE1C48042000905310 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -348,6 +449,7 @@
 		4B66CADF1C48042000905310 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (

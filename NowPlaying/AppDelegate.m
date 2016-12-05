@@ -8,7 +8,6 @@
 #import "AppDelegate.h"
 #import "G.h"
 #import "MhSecurity.h"
-#import "MhTwitter.h"
 #import "ViewController.h"
 
 
@@ -55,14 +54,14 @@
     NSString* secret = [MhSecurity StringFromUserDefaults:KEY_SECRET];
     
     if(ctoken && csecret) {
-        [[MhTwitter instance] setConsumerToken:ctoken secret:csecret];
+        self.twitterSession = [[STWSession alloc] initWithConsumerKey:ctoken consumerSecret:csecret];
     }
     else {
-        [[MhTwitter instance] setConsumerToken:DEFAULT_TWITTER_TOKEN secret:DEFAULT_TWITTER_SECRET];
+        self.twitterSession = [[STWSession alloc] initWithConsumerKey:DEFAULT_TWITTER_TOKEN consumerSecret:DEFAULT_TWITTER_SECRET];
     }
     
     if(token && secret) {
-        [[MhTwitter instance] setAccessToken:token secret:secret];
+        [AppDelegate appDelegate].twitterSession.account = [[STWAccount alloc] initWithOauthToken:token oauthTokenSecret:secret];
     }
     else {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_TOKEN];
