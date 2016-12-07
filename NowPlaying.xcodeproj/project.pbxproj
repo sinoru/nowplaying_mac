@@ -15,7 +15,6 @@
 		4B66CAD41C48042000905310 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B66CAD31C48042000905310 /* ViewController.m */; };
 		4B66CAD61C48042000905310 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B66CAD51C48042000905310 /* Assets.xcassets */; };
 		4B66CAD91C48042000905310 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B66CAD71C48042000905310 /* Main.storyboard */; };
-		4B66CB121C480F5900905310 /* MhTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B66CB111C480F5900905310 /* MhTwitter.m */; };
 		4B8D049F1C4972AF00075864 /* PrefController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D049E1C4972AE00075864 /* PrefController.m */; };
 		4B8D04A21C49760000075864 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D04A11C49760000075864 /* LoginController.m */; };
 		4B8D04A41C49767D00075864 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8D04A31C49767D00075864 /* WebKit.framework */; };
@@ -83,8 +82,6 @@
 		4B66CAD81C48042000905310 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B66CADA1C48042000905310 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B66CAE01C4805CD00905310 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
-		4B66CB101C480F5900905310 /* MhTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MhTwitter.h; sourceTree = "<group>"; };
-		4B66CB111C480F5900905310 /* MhTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MhTwitter.m; sourceTree = "<group>"; };
 		4B8D049D1C4972AE00075864 /* PrefController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefController.h; sourceTree = "<group>"; };
 		4B8D049E1C4972AE00075864 /* PrefController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefController.m; sourceTree = "<group>"; };
 		4B8D04A01C49760000075864 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
@@ -183,8 +180,6 @@
 			children = (
 				4BF3C9191C4A13F200DB4573 /* G.h */,
 				4B66CAE01C4805CD00905310 /* iTunes.h */,
-				4B66CB101C480F5900905310 /* MhTwitter.h */,
-				4B66CB111C480F5900905310 /* MhTwitter.m */,
 				4BF3C9161C4A0B6000DB4573 /* MhSecurity.h */,
 				4BF3C9171C4A0B6000DB4573 /* MhSecurity.m */,
 				4BF3C94A1C4A40A000DB4573 /* NSImage+Resize.h */,
@@ -293,7 +288,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B66CB121C480F5900905310 /* MhTwitter.m in Sources */,
 				4B66CAD41C48042000905310 /* ViewController.m in Sources */,
 				4B66CAD11C48042000905310 /* main.m in Sources */,
 				4B8D049F1C4972AF00075864 /* PrefController.m in Sources */,
