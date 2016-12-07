@@ -61,3 +61,6 @@ iOSInjectionProject/
 
 # MacOS
 .DS_Store
+
+# Project itself
+NowPlaying-PM.xcodeproj

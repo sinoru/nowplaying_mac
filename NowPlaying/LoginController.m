@@ -32,7 +32,7 @@
     self.indicator.hidden = NO;
     [self.indicator startAnimation:nil];
     
-    [STWOAuth requestRequestTokenWithSession:[AppDelegate appDelegate].twitterSession xAuthMode:STWXAuthModeNone callback:@"oob" handler:^(NSString * _Nullable token, NSString * _Nullable tokenSecret, NSError * _Nullable error) {
+    [STWOAuth requestRequestTokenWithSession:[AppDelegate appDelegate].twitterSession xAuthMode:STWxAuthModeNone callback:@"oob" completionHandler:^(NSString * _Nullable token, NSString * _Nullable tokenSecret, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if(error) {
                 NSAlert* alert = [[NSAlert alloc] init];
@@ -74,7 +74,7 @@
     self.indicator.hidden = NO;
     [self.indicator startAnimation:nil];
     
-    [STWOAuth requestAccessTokenWithSession:[AppDelegate appDelegate].twitterSession requestToken:self.oauthToken requestTokenSecret:self.oauthSecret xAuthMode:STWXAuthModeNone xAuthUsername:nil xAuthPassword:nil oauthVerifier:key handler:^(NSString * _Nullable token, NSString * _Nullable tokenSecret, int64_t userID, NSString * _Nullable screenName, NSError * _Nullable error) {
+    [STWOAuth requestAccessTokenWithSession:[AppDelegate appDelegate].twitterSession requestToken:self.oauthToken requestTokenSecret:self.oauthSecret xAuthMode:STWxAuthModeNone xAuthUsername:nil xAuthPassword:nil oauthVerifier:key completionHandler:^(NSString * _Nullable token, NSString * _Nullable tokenSecret, int64_t userID, NSString * _Nullable screenName, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if(error) {
                 NSAlert* alert = [[NSAlert alloc] init];
@@ -87,7 +87,7 @@
             }
             
             
-            [AppDelegate appDelegate].twitterSession.account = [[STWAccount alloc] initWithOauthToken:token oauthTokenSecret:tokenSecret];
+            [AppDelegate appDelegate].twitterSession.account = [[STWAccount alloc] initWithAccessToken:token accessTokenSecret:tokenSecret];
             
             [MhSecurity SaveToUserDefaults:token key:KEY_TOKEN];
             [MhSecurity SaveToUserDefaults:tokenSecret key:KEY_SECRET];

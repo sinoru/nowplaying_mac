@@ -61,7 +61,7 @@
     }
     
     if(token && secret) {
-        [AppDelegate appDelegate].twitterSession.account = [[STWAccount alloc] initWithOauthToken:token oauthTokenSecret:secret];
+        [AppDelegate appDelegate].twitterSession.account = [[STWAccount alloc] initWithAccessToken:token accessTokenSecret:secret];
     }
     else {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:KEY_TOKEN];
