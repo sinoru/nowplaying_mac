@@ -8,7 +8,8 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 @import STwitter;
-
+@import Accounts;
+@import Social;
 
 @interface LoginController : NSViewController <WebFrameLoadDelegate>
 

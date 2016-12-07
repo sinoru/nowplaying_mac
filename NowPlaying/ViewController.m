@@ -9,7 +9,6 @@
 #import "G.h"
 #import "MhSecurity.h"
 #import "iTunes.h"
-#import "MhTwitter.h"
 #import "NSImage+Resize.h"
 #import "AppDelegate.h"
 
